@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Editor CNH Digital (Overlay)</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Editor CNH - Overlay</h1>
+      <div class="header-actions">
+        <label class="btn">
+          <input id="baseImageInput" type="file" accept="image/*" hidden />
+          Carregar imagem da CNH (frente)
+        </label>
+        <button id="exportPngBtn" class="btn">Exportar PNG</button>
+        <button id="exportPdfBtn" class="btn">Exportar PDF</button>
+        <button id="saveLayoutBtn" class="btn">Salvar Layout</button>
+        <button id="loadLayoutBtn" class="btn">Carregar Layout</button>
+        <button id="resetBtn" class="btn btn-danger">Limpar</button>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <aside class="sidebar">
+        <h2>Campos</h2>
+        <div class="field-list" id="fieldList">
+          <!-- Campos padrões -->
+        </div>
+        <div class="sidebar-section">
+          <h3>Adicionar campo</h3>
+          <input id="newFieldName" type="text" placeholder="Nome do campo" />
+          <button id="addFieldBtn" class="btn">Adicionar</button>
+        </div>
+        <div class="sidebar-section">
+          <h3>Aparência</h3>
+          <label>
+            Fonte
+            <select id="fontFamily">
+              <option value="Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, \"Apple Color Emoji\", \"Segoe UI Emoji\"">Inter/System</option>
+              <option value="Roboto, Arial, sans-serif">Roboto</option>
+              <option value="monospace">Monospace</option>
+            </select>
+          </label>
+          <label>
+            Tamanho (px)
+            <input id="fontSize" type="number" min="6" max="64" value="14" />
+          </label>
+          <label>
+            Peso
+            <select id="fontWeight">
+              <option value="400">Normal</option>
+              <option value="600">Semibold</option>
+              <option value="700">Bold</option>
+            </select>
+          </label>
+          <label>
+            Cor
+            <input id="fontColor" type="color" value="#111111" />
+          </label>
+          <label>
+            Contorno
+            <input id="strokeToggle" type="checkbox" />
+          </label>
+          <label>
+            Cor do contorno
+            <input id="strokeColor" type="color" value="#ffffff" />
+          </label>
+          <label>
+            Alinhamento
+            <select id="textAlign">
+              <option value="left">Esquerda</option>
+              <option value="center">Centro</option>
+              <option value="right">Direita</option>
+            </select>
+          </label>
+        </div>
+      </aside>
+
+      <section class="canvas-area">
+        <div class="canvas-toolbar">
+          <label>
+            Largura
+            <input id="canvasWidth" type="number" min="300" max="4000" value="1000" />
+          </label>
+          <label>
+            Altura
+            <input id="canvasHeight" type="number" min="200" max="4000" value="630" />
+          </label>
+          <button id="applyCanvasSizeBtn" class="btn">Aplicar</button>
+          <label>
+            Grade
+            <input id="gridToggle" type="checkbox" checked />
+          </label>
+          <label>
+            Snap (px)
+            <input id="snapSize" type="number" min="1" max="50" value="5" />
+          </label>
+        </div>
+        <div id="stage" class="stage" tabindex="0">
+          <img id="baseImage" class="base-image" alt="CNH base" />
+          <div id="overlayContainer" class="overlay-container"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>Dica: arraste para mover, arraste as bordas para redimensionar. Duplo clique para editar o valor. Delete para remover.</span>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNa5aV8pmOmd1K9zU8clwqGiNhc0eka2OL4r1QBrFh9QZQh9iT7qk2y6f5A7bV8MPz5m4jY7X2H8wQK8Z5m8Nw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-YkdS51pAsnXCrL0f3oQ3bSxXkYv6yqV3xJz3B9xH8mqe9h1+eEh8S6g8UjYmn1/3xP3hVqOqkQ2s6u4ZV3pPRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
