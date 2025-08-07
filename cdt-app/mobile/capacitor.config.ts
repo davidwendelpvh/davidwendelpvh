@@ -1,13 +1,14 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
+const WEB_URL = process.env.WEB_URL || 'http://10.0.2.2:8080';
+
 const config: CapacitorConfig = {
   appId: 'br.gov.cdt.demo',
   appName: 'CDT Demo',
   webDir: '../public',
   server: {
-    // Troque por sua URL pública gerada via Cloudflared
-    url: 'http://10.0.2.2:8080',
-    cleartext: true
+    url: WEB_URL,
+    cleartext: WEB_URL.startsWith('http://')
   }
 };
 
