@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    container_name: cdt-app
+    ports:
+      - "8080:8080"
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: cdt-tunnel
+    depends_on:
+      - app
+    command: tunnel --no-autoupdate --url http://app:8080 --metrics 0.0.0.0:2000
+    restart: unless-stopped
